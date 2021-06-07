@@ -22,6 +22,7 @@ const create = (restaurant) => {
     const newRestaurant = { id: uuidv4(), ...restaurant };
     restaurants.push(newRestaurant);
     if (process.env.NODE_ENV !== "test") {
+      console.log(process.env.NODE_ENV);
       writeDataToFile(filename, restaurants);
     }
     resolve(newRestaurant);
@@ -33,6 +34,7 @@ const update = (id, newRestaurant) => {
     const index = restaurants.findIndex((restaurant) => restaurant.id === id);
     restaurants[index] = { id, ...newRestaurant };
     if (process.env.NODE_ENV !== "test") {
+      console.log(process.env.NODE_ENV);
       writeDataToFile(filename, restaurants);
     }
     resolve(restaurants[index]);
@@ -45,6 +47,7 @@ const remove = (id) => {
       (restaurant) => restaurant.id !== id
     );
     if (process.env.NODE_ENV !== "test") {
+      console.log(process.env.NODE_ENV);
       writeDataToFile(filename, newRestaurants);
     }
     resolve();
